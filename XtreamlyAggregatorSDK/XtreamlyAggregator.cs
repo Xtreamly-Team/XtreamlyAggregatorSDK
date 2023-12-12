@@ -37,7 +37,7 @@ public class XtreamlyAggregator<T> : IDisposable
         _client.GetBucketsApi().CreateBucketAsync(_aggregatorName, retention, org).Wait();
     }
 
-    public Task Send( T data, string measurement = "Point" )
+    public Task Send( T data)
     {
         return Task.Run(() =>
         {
@@ -45,7 +45,7 @@ public class XtreamlyAggregator<T> : IDisposable
         });
     }
     
-    public Task SendMany( T[] data, string measurement = "Point" )
+    public Task SendMany( T[] data)
     {
 
         return Task.Run(() =>
