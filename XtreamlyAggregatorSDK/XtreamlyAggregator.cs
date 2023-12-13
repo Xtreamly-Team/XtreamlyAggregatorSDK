@@ -17,7 +17,7 @@ public class XtreamlyAggregator<T> : IDisposable
         var influxdbAddress = Environment.GetEnvironmentVariable("influxdbAddress") ?? throw new InvalidOperationException("influxdbAddress"+ " env variable is not provided");
         _organization = Environment.GetEnvironmentVariable("organization") ?? throw new InvalidOperationException("organization"+ " env variable is not provided");
         var secret = Environment.GetEnvironmentVariable("secret") ?? throw new InvalidOperationException("secret" + " env variable is not provided");
-        _aggregatorName = nameof(T);
+        _aggregatorName = typeof(T).Name;
         _client = new InfluxDBClient(influxdbAddress, secret);
         var health =  _client.PingAsync().Result;
         if (!health)
